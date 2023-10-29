@@ -14,75 +14,178 @@ var svg = d3.select("#ageDistribution")
           "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("../App/data/data.csv").get(function(data){
-    // console.log(data);
-    // document.write(data);
-
-    // Ages= data.map(item=> item.Age);
-      // Convert 'Age' values to JavaScript Date objects and calculate age in years
-    // data.forEach(item => {
-    //     item.Age = calculateAge(item.Age);
-    //     item.code = "Student " + item.code; // Calculate age in years
-    // });
+    // Parse the data and calculate age
     data.forEach(function(d) {
         d.Age = new Date(d.Age);
         d.Age = calculateAge(d.Age);
     });
-    // ages_years = Ages.map(item=> calculateAge(item));
-    // studentId = data.map(item => "Student " + item.code );
 
-    console.log(data); // Output: 'Age' values are now in years
-
-    // 1. Age Distribution: Histogram
-    // X axis: scale and draw:
+    // Separate data by gender
+    var maleData = data.filter(function(d) { return d.Sexe === "M"; });
+    var femaleData = data.filter(function(d) { return d.Sexe === "F"; });
+    var myGroups = d3.map(data, function(d){return d.Age;}).keys()
+    // X axis: scale and draw
     var x = d3.scaleLinear()
-        .domain([0, d3.max(data, function(d) { return +d.Age })])
+        // .domain([d3.min(data, function(d) { return +(d.Age-0.5) }), d3.max(data, function(d) { return +d.Age })])
+        .domain(myGroups)
         .range([0, width]);
+
+    // Y axis: scale and draw
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+
+    
+    // Define histogram function for male students
+    var maleHistogram = d3.histogram()
+        .value(function(d) { return d.Age; })
+        .domain(x.domain())
+        .thresholds(x.ticks(7));
+
+    // Calculate bins for male students
+    var maleBins = maleHistogram(maleData);
+
+    // Define histogram function for female students
+    var femaleHistogram = d3.histogram()
+        .value(function(d) { return d.Age; })
+        .domain(x.domain())
+        .thresholds(x.ticks(7));
+
+    // Calculate bins for female students
+    var femaleBins = femaleHistogram(femaleData);
+
+    // Determine the maximum frequency for setting the y domain
+    var maxFrequency = Math.max(
+        d3.max(maleBins, function(d) { return d.length; }),
+        d3.max(femaleBins, function(d) { return d.length; })
+    );
+    y.domain([0, maxFrequency]);
+
+    // Draw X axis
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
-    // set the parameters for the histogram
-    var histogram = d3.histogram()
-        .value(function(d) { return d.Age; })   // I need to give the vector of value
-        .domain(x.domain())  // then the domain of the graphic
-        .thresholds(x.ticks(5)); // then the numbers of bins
-
-    // And apply this function to data to get the bins
-    var bins = histogram(data);
-
-    // Y axis: scale and draw:
-    var y = d3.scaleLinear()
-        .range([height, 0]);
-        y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+    // Draw Y axis
     svg.append("g")
         .call(d3.axisLeft(y));
+    var ageRanges = ["0-5", "6-10", "11-15", "16-20", "21-25", "26-30", "31-35"];
 
-    // append the bar rectangles to the svg element
-    // svg.selectAll("rect")
-    //     .data(bins)
-    //     .enter()
-    //     .append("rect")
-    //       .attr("x", 1)
-    //       .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-    //       .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-    //       .attr("height", function(d) { return height - y(d.length); })
-    //       .style("fill", "#69b3a2")
-    svg.selectAll("rect")
-        .data(bins)
-        .enter()
-        .append("rect")
-            .attr("x", 1)
-            .attr("transform", function(d) { 
-                var barWidth = x(d.x1) - x(d.x0) - 1;
-                return "translate(" + (x(d.x0) + barWidth >= 0 ? x(d.x0) : x(d.x0) + 1) + "," + y(d.length) + ")"; 
-            })
-            .attr("width", function(d) { 
-                var barWidth = x(d.x1) - x(d.x0) - 1;
-                return barWidth >= 0 ? barWidth : 1; // Ensure the width is not negative
-            })
-            .attr("height", function(d) { return height - y(d.length); })
-            .style("fill", "#69b3a2");
+
+    // Draw bars for male students
+    var maleBars = svg.selectAll("rect.male")
+        .data(maleBins)
+        .enter().append("rect")
+        .attr("class", "male")
+        .attr("x", 1)
+        .attr("transform", function(d) {
+            var barWidth = x(d.x1) - x(d.x0) - 1;
+            return "translate(" + (x(d.x0) + barWidth >= 0 ? x(d.x0) : x(d.x0) + 1) + "," + y(d.length) + ")";
+        })
+        .attr("width", function(d) {
+            var barWidth = x(d.x1) - x(d.x0) - 1;
+            return barWidth >= 0 ? barWidth : 1;
+        })
+        .attr("height", function(d) { return height - y(d.length); })
+        .style("fill", "blue")
+        .on("mouseover", function(d) {
+            // Show tooltip on mouseover
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", 0.9);
+            tooltip.html("Male: " + d.length) // Customize the tooltip content as needed
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            // Hide tooltip on mouseout
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+         });
+
+    // Draw bars for female students
+    var femaleBars = svg.selectAll("rect.female")
+        .data(femaleBins)
+        .enter().append("rect")
+        .attr("class", "female")
+        .attr("x", 1)
+        .attr("transform", function(d) {
+            var barWidth = x(d.x1) - x(d.x0) - 1;
+            return "translate(" + (x(d.x0) + barWidth >= 0 ? x(d.x0) : x(d.x0) + 1) + "," + y(d.length) + ")";
+        })
+        .attr("width", function(d) {
+            var barWidth = x(d.x1) - x(d.x0) - 1;
+            return barWidth >= 0 ? barWidth : 1;
+        })
+        .attr("height", function(d) { return height - y(d.length); })
+        .style("fill", "pink")
+        .on("mouseover", function(d) {
+            // Show tooltip on mouseover
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", 0.9);
+            tooltip.html("Female: " + d.length) // Customize the tooltip content as needed
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            // Hide tooltip on mouseout
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
+        // Legend Data
+        var legendData = [
+            { label: "Male", color: "blue" }, // Blue color for Male
+            { label: "Female", color: "pink" } // Orange color for Female
+        ];
+
+        // Create a tooltip div element
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
         
+
+        // Create Legend
+        var legend = svg.selectAll(".legend")
+            .data(legendData)
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+        legend.append("circle")
+            .attr("cx", width - 10)
+            .attr("cy", 9)
+            .attr("r", 8)
+            .style("fill", function(d) { return d.color; });
+
+        legend.append("text")
+            .attr("x", width - 25)
+            .attr("y", 7)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function(d) { return d.label; });
+        // Add click event to legend items for toggling visibility
+        legend.on("click", function(d) {
+            var selectedClass = d.label.toLowerCase();
+            if (selectedClass === "male") {
+                toggleVisibility(maleBars);
+            } else if (selectedClass === "female") {
+                toggleVisibility(femaleBars);
+            }
+    
+
+}); 
+
+// Function to toggle visibility of bars
+function toggleVisibility(bars) {
+    var isVisible = bars.style("opacity") === "1";
+    bars.transition().duration(500)
+        .style("opacity", isVisible ? 0 : 1);
+}
+
+
 });     
 
 // Function to calculate age in years
