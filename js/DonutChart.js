@@ -35,11 +35,21 @@ var pie = d3.pie()
 // Append an SVG element to the chart div
 var svg = d3.select("#schoolTypeAreaDistribution")
     .append("svg")
-    .attr("width", containerWidth)
-    .attr("height", containerHeight)
+    // .attr("style", "outline: thin solid black;") 
+    .attr("width", width)
+    .attr("height", height)
+    .style("stroke", "black")
+    // .style("stroke-width", .90)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+// var borderPath = svg.append(".rect")
+//     .attr("x", 0)
+//     .attr("y", 0)
+//     .attr("height", h)
+//     .attr("width", w)
+
+    
 // Generate the donut chart segments
 var g = svg.selectAll(".arc")
     .data(pie(data))
@@ -47,6 +57,7 @@ var g = svg.selectAll(".arc")
     .attr("class", "arc");
     var path = g.append("path")
     .attr("d", arc)
+    .style("stroke", "black")
     .style("fill", function(d) { return color(d.data.type + " " + d.data.area); })
     .on("mouseover", function(d) {
         // Show tooltip with the number of students when hovering over a segment
@@ -64,30 +75,27 @@ var g = svg.selectAll(".arc")
             .style("opacity", 0);
     });
 
-// Append paths for the donut chart segments
-// g.append("path")
-//     .attr("d", arc)
-//     .style("fill", function(d) { return color(d.data.type + " " + d.data.area); });
-
 // Add labels to the donut chart segments
-g.append("text")
-    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-    .attr("dy", ".35em")
-    .text(function(d) { return d.data.type + " " + d.data.area; });
+// g.append("text")
+//     .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+//     .attr("dy", ".35")
+//     .text(function(d) { return d.data.type + " " + d.data.area; });
+
 
 // Add a legend
 var legend = svg.selectAll(".legend")
     .data(data)
     .enter().append("g")
     .attr("class", "legend")
-    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+    .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
 
 legend.append("rect")
     .attr("x", width / 1 - 22)
     .attr("width", 18)
     .attr("height", 18)
+    .style("stroke", "black")
     .style("fill", function(d) { return color(d.type + " " + d.area); });
-
+  
 legend.append("text")
     .attr("x", width / 1 - 24)
     .attr("y", 9)

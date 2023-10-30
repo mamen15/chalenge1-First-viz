@@ -20,6 +20,7 @@ var healthMargin = {top: 10, right: 30, bottom: 30, left: 40},
 // Append the svg object to the body of the page
 var healthSvg = d3.select("#healthDistribution")
   .append("svg")
+    .attr("style", "outline: thin solid black;") 
     .attr("width", healthWidth + healthMargin.left + healthMargin.right)
     .attr("height", healthHeight + healthMargin.top + healthMargin.bottom)
   .append("g")
