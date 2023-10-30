@@ -1,4 +1,3 @@
-
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
     width = 460 - margin.left - margin.right,
@@ -12,6 +11,20 @@ var svg = d3.select("#ageDistribution")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+// Set the dimensions and margins of the graph
+var healthMargin = {top: 10, right: 30, bottom: 30, left: 40},
+    healthWidth = 460 - healthMargin.left - healthMargin.right,
+    healthHeight = 400 - healthMargin.top - healthMargin.bottom;
+
+// Append the svg object to the body of the page
+var healthSvg = d3.select("#healthDistribution")
+  .append("svg")
+    .attr("width", healthWidth + healthMargin.left + healthMargin.right)
+    .attr("height", healthHeight + healthMargin.top + healthMargin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + healthMargin.left + "," + healthMargin.top + ")");
+
 
 d3.csv("../App/data/data.csv").get(function(data){
     // Parse the data and calculate age
@@ -178,16 +191,17 @@ d3.csv("../App/data/data.csv").get(function(data){
 
 }); 
 
+
+
+
+});  
+
 // Function to toggle visibility of bars
 function toggleVisibility(bars) {
     var isVisible = bars.style("opacity") === "1";
     bars.transition().duration(500)
         .style("opacity", isVisible ? 0 : 1);
 }
-
-
-});     
-
 // Function to calculate age in years
 function calculateAge(dob) {
     var today = new Date();
