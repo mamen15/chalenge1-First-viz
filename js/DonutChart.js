@@ -1,110 +1,123 @@
 // Data for the donut chart
-var data = [
-    { type: "Public", area: "Rural", count: 20 },
-    { type: "Public", area: "Urban", count: 10 },
-    { type: "Private", area: "Rural", count: 5 },
-    { type: "Private", area: "Urban", count: 5 }
+var schoolTypeAreaData = [
+    {
+        type: "Public",
+        area: "Rural",
+        count: 20
+    }, {
+        type: "Public",
+        area: "Urban",
+        count: 10
+    }, {
+        type: "Private",
+        area: "Rural",
+        count: 5
+    }, {
+        type: "Private",
+        area: "Urban",
+        count: 5
+    }
 ];
-// Get the width and height of the container element
-var containerWidth = document.getElementById("schoolTypeAreaDistribution").offsetWidth;
-var containerHeight = containerWidth; // Make the chart square
 
-// Set the radius based on the container size
-var radius = Math.min(containerWidth, containerHeight) / 2;
 
-// Set the dimensions and radius of the donut chart
-var width = 300,
-    height = 300,
-    radius = Math.min(width, height) / 2;
+// Set up the donut chart dimensions and radius
+var donutWidth = 100;
+var donutRadius = Math.min(width, height) / 3;
+var donutInnerRadius = donutRadius - donutWidth;
 
 // Create a color scale
-var color = d3.scaleOrdinal()
-    .domain(["Public Rural", "Public Urban", "Private Rural", "Private Urban"])
-    .range(["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"]);
+var donutColor = d3.scaleOrdinal().domain(["Public Rural", "Public Urban", "Private Rural", "Private Urban"]).range(["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"]);
 
-// Create an arc generator
-var arc = d3.arc()
-    .outerRadius(radius - 10)
-    .innerRadius(radius - 70);
+// Create arc and pie generators for the donut chart
+var donutArc = d3.arc().outerRadius(donutRadius).innerRadius(donutInnerRadius);
 
-// Create a pie generator
-var pie = d3.pie()
-    .sort(null)
-    .value(function(d) { return d.count; });
+var donutPie = d3.pie().sort(null).value(function (d) {
+    return d.count;
+});
 
-// Append an SVG element to the chart div
-var svg = d3.select("#schoolTypeAreaDistribution")
-    .append("svg")
-    // .attr("style", "outline: thin solid black;") 
-    .attr("width", width)
-    .attr("height", height)
-    .style("stroke", "black")
-    // .style("stroke-width", .90)
-    .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+// Append an SVG element for the donut chart
+var donutSvg = d3.select("#schoolTypeAreaDistribution")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-// var borderPath = svg.append(".rect")
-//     .attr("x", 0)
-//     .attr("y", 0)
-//     .attr("height", h)
-//     .attr("width", w)
-
-    
 // Generate the donut chart segments
-var g = svg.selectAll(".arc")
-    .data(pie(data))
-    .enter().append("g")
-    .attr("class", "arc");
-    var path = g.append("path")
-    .attr("d", arc)
-    .style("stroke", "black")
-    .style("fill", function(d) { return color(d.data.type + " " + d.data.area); })
-    .on("mouseover", function(d) {
-        // Show tooltip with the number of students when hovering over a segment
-        tooltip.transition()
-            .duration(200)
-            .style("opacity", .9);
-        tooltip.html("Number of Students: " + d.data.count)
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-    })
-    .on("mouseout", function(d) {
-        // Hide the tooltip when mouseout
-        tooltip.transition()
-            .duration(500)
-            .style("opacity", 0);
-    });
+var donutPath = donutSvg.selectAll("path")
+                .data(donutPie(schoolTypeAreaData)).enter()
+                .append("path")
+                .attr("d", donutArc)
+                .style("fill", function (d) {
+                    return donutColor(d.data.type + " " + d.data.area);
+                }).style("stroke", "white")
+                .style("stroke-width", 2);
 
 // Add labels to the donut chart segments
-// g.append("text")
-//     .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-//     .attr("dy", ".35")
-//     .text(function(d) { return d.data.type + " " + d.data.area; });
+var donutLabels = donutSvg.selectAll("text")
+                .data(donutPie(schoolTypeAreaData)).enter()
+                .append("text")
+                .attr("transform", function (d) {
+                    var centroid = donutArc.centroid(d);
+                // Make the percentage display slightly above the center of the donut segment
+                    centroid[1] -= 10;
+                    return "translate(" + centroid + ")";
+                }).attr("dy", ".35em")
+                .style("text-anchor", "middle")
+                .style("fill", "white")
+                .style("font-size", "20px")
+                .text(function (d) { // Calculate percentage and display it
+                    var percentage = ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100;
+                    return percentage.toFixed(1) + "%";
+                });
 
+// Define the legend data (same as your schoolTypeAreaData)
+var legendData = [
+    { type: "Public", area: "Rural" },
+    { type: "Public", area: "Urban" },
+    { type: "Private", area: "Rural" },
+    { type: "Private", area: "Urban" }
+];
 
-// Add a legend
-var legend = svg.selectAll(".legend")
-    .data(data)
-    .enter().append("g")
+// Define the legend colors
+var legendColors = ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"];
+
+// Define the legend size and position
+var legendRectSize = 18;
+var legendSpacing = 4;
+var legendX = width / 2 - donutRadius +10;
+var legendY = height / 2 - donutRadius;
+
+// Append an SVG element for the legend
+var legendSvg = donutSvg.append("g")
     .attr("class", "legend")
-    .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
+    .attr("transform", "translate(" + legendX + "," + legendY + ")");
 
-legend.append("rect")
-    .attr("x", width / 1 - 22)
-    .attr("width", 18)
-    .attr("height", 18)
-    .style("stroke", "black")
-    .style("fill", function(d) { return color(d.type + " " + d.area); });
-  
-legend.append("text")
-    .attr("x", width / 1 - 24)
-    .attr("y", 9)
-    .attr("dy", ".35em")
-    .style("text-anchor", "end")
-    .text(function(d) { return d.type + " " + d.area; });
+// Create legend items (rectangles and text)
+var legendItems = legendSvg.selectAll(".legend-item")
+    .data(legendData)
+    .enter().append("g")
+    .attr("class", "legend-item")
+    .attr("transform", function(d, i) {
+        var translateY = i * (legendRectSize + legendSpacing);
+        return "translate(0," + translateY + ")";
+    });
 
-    // Create a tooltip div element
-var tooltip = d3.select("body")
-.append("div")
-.attr("class", "tooltip")
-.style("opacity", 0);
+// Add legend rectangles
+legendItems.append("rect")
+    .attr("width", legendRectSize)
+    .attr("height", legendRectSize)
+    .style("fill", function(d, i) {
+        return legendColors[i];
+    });
+
+// Add legend text
+legendItems.append("text")
+    .attr("x", legendRectSize + legendSpacing)
+    .attr("y", legendRectSize / 2)
+    .attr("dy", "0.35em")
+    .text(function(d) {
+        return d.type + " " + d.area;
+    })
+    .style("font-size", "12px")
+    .style("fill", "#000"); // Set legend text color

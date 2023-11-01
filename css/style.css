@@ -1,9 +1,83 @@
-.tooltip {
+/* Style the tooltip */
+.tooltipAgeHist {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Style the bars */
+.bar {
+    stroke: none;
+}
+
+/* Style the legend */
+.legend {
+    font-size: 14px;
+    /* cursor: pointer; */
+}
+
+/* Apply Bootstrap classes to the legend items */
+.legend rect {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+
+/* Style X and Y axis labels */
+.axis-labels {
+    font-size: 14px;
+}
+
+/* Style the chart title */
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Style the chart container */
+.chart-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Center the chart within the container */
+#ageDistribution svg {
+    margin: 0 auto;
+    display: block;
+}
+/* Add your custom styles here */
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.chart-container {
+    background-color: #f1f3f5;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+    color: #000000;
+}
+
+.tooltipAgeHist {
     position: absolute;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    pointer-events: none;
-    font-size: 12px;
+    font-size: 14px;
 }
