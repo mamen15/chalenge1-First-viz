@@ -51,8 +51,13 @@
 }
 /* Add your custom styles here */
 body {
+    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-    color: #343a40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .container {
@@ -80,4 +85,27 @@ body {
     padding: 10px;
     border-radius: 5px;
     font-size: 14px;
+}
+.radar-chart .area {
+    fill-opacity: 0.7;
+  }
+  .radar-chart.focus .area {
+    fill-opacity: 0.3;
+  }
+  .radar-chart.focus .area.focused {
+    fill-opacity: 0.9;
+  }
+
+
+.heatmap-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.heatmap-title {
+    font-size: 24px;
+    margin-bottom: 20px;
 }

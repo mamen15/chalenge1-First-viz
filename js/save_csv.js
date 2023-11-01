@@ -1,244 +1,1016 @@
-// Data for the donut chart
-var donutData = [
-    { type: "Public", area: "Rural", count: 20 },
-    { type: "Public", area: "Urban", count: 10 },
-    { type: "Private", area: "Rural", count: 5 },
-    { type: "Private", area: "Urban", count: 5 }
+// ////////////////////////////////////////////////////////////
+// //////////////////////// Data //////////////////////////////
+// ////////////////////////////////////////////////////////////
+
+var studentsData = [
+    // Student 1
+
+    [
+        {
+            axis: "Score primaire",
+            value: 8.75
+        },
+        {
+            axis: "Score collégial",
+            value: 16.41
+        },
+        {
+            axis: "Score actuel",
+            value: 16.41
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 17.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 16.0
+        }, {
+            axis: "Score en première langue",
+            value: 15.34
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.45
+        },
+        {
+            axis: "Score collégial",
+            value: 4.75
+        },
+        {
+            axis: "Score actuel",
+            value: 4.75
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 5.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.0
+        }, {
+            axis: "Score en première langue",
+            value: 6.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.3
+        },
+        {
+            axis: "Score collégial",
+            value: 8.8
+        },
+        {
+            axis: "Score actuel",
+            value: 0.0
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 0.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 0.0
+        }, {
+            axis: "Score en première langue",
+            value: 0.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.23
+        },
+        {
+            axis: "Score collégial",
+            value: 2.71
+        },
+        {
+            axis: "Score actuel",
+            value: 0.0
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 0.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 0.0
+        }, {
+            axis: "Score en première langue",
+            value: 0.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.33
+        },
+        {
+            axis: "Score collégial",
+            value: 8.19
+        },
+        {
+            axis: "Score actuel",
+            value: 0.0
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 0.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 0.0
+        }, {
+            axis: "Score en première langue",
+            value: 0.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.54
+        },
+        {
+            axis: "Score collégial",
+            value: 6.65
+        },
+        {
+            axis: "Score actuel",
+            value: 0.0
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 0.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 0.0
+        }, {
+            axis: "Score en première langue",
+            value: 0.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.03
+        },
+        {
+            axis: "Score collégial",
+            value: 6.5
+        },
+        {
+            axis: "Score actuel",
+            value: 6.5
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 0.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 6.44
+        }, {
+            axis: "Score en première langue",
+            value: 7.3
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.95
+        },
+        {
+            axis: "Score collégial",
+            value: 6.31
+        },
+        {
+            axis: "Score actuel",
+            value: 6.31
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 5.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 4.75
+        }, {
+            axis: "Score en première langue",
+            value: 4.72
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.21
+        },
+        {
+            axis: "Score collégial",
+            value: 7.02
+        },
+        {
+            axis: "Score actuel",
+            value: 7.02
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 6.83
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.06
+        }, {
+            axis: "Score en première langue",
+            value: 4.1
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.22
+        },
+        {
+            axis: "Score collégial",
+            value: 7.9
+        },
+        {
+            axis: "Score actuel",
+            value: 7.9
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 3.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.12
+        }, {
+            axis: "Score en première langue",
+            value: 5.7
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.1
+        },
+        {
+            axis: "Score collégial",
+            value: 6.42
+        },
+        {
+            axis: "Score actuel",
+            value: 6.42
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 2.5
+        }, {
+            axis: "Score en première langue",
+            value: 2.6
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.16
+        },
+        {
+            axis: "Score collégial",
+            value: 9.14
+        },
+        {
+            axis: "Score actuel",
+            value: 9.14
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 6.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.13
+        }, {
+            axis: "Score en première langue",
+            value: 8.7
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.85
+        },
+        {
+            axis: "Score collégial",
+            value: 9.67
+        },
+        {
+            axis: "Score actuel",
+            value: 9.67
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 10.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.66
+        }, {
+            axis: "Score en première langue",
+            value: 9.6
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.32
+        },
+        {
+            axis: "Score collégial",
+            value: 9.4
+        },
+        {
+            axis: "Score actuel",
+            value: 9.4
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.84
+        }, {
+            axis: "Score en première langue",
+            value: 8.9
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.86
+        },
+        {
+            axis: "Score collégial",
+            value: 9.3
+        },
+        {
+            axis: "Score actuel",
+            value: 9.3
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 9.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.75
+        }, {
+            axis: "Score en première langue",
+            value: 7.95
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.46
+        },
+        {
+            axis: "Score collégial",
+            value: 9.67
+        },
+        {
+            axis: "Score actuel",
+            value: 9.67
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.41
+        }, {
+            axis: "Score en première langue",
+            value: 5.1
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.41
+        },
+        {
+            axis: "Score collégial",
+            value: 9.9
+        },
+        {
+            axis: "Score actuel",
+            value: 9.9
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 10.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.0
+        }, {
+            axis: "Score en première langue",
+            value: 11.4
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.53
+        },
+        {
+            axis: "Score collégial",
+            value: 7.42
+        },
+        {
+            axis: "Score actuel",
+            value: 7.42
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 5.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.69
+        }, {
+            axis: "Score en première langue",
+            value: 5.9
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.43
+        },
+        {
+            axis: "Score collégial",
+            value: 8.78
+        },
+        {
+            axis: "Score actuel",
+            value: 8.78
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 11.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.06
+        }, {
+            axis: "Score en première langue",
+            value: 10.25
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 8.05
+        },
+        {
+            axis: "Score collégial",
+            value: 8.72
+        },
+        {
+            axis: "Score actuel",
+            value: 8.72
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.0
+        }, {
+            axis: "Score en première langue",
+            value: 9.7
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.75
+        },
+        {
+            axis: "Score collégial",
+            value: 9.08
+        },
+        {
+            axis: "Score actuel",
+            value: 9.08
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 11.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.0
+        }, {
+            axis: "Score en première langue",
+            value: 9.6
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.57
+        },
+        {
+            axis: "Score collégial",
+            value: 8.49
+        },
+        {
+            axis: "Score actuel",
+            value: 8.49
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 6.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.44
+        }, {
+            axis: "Score en première langue",
+            value: 9.2
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.09
+        },
+        {
+            axis: "Score collégial",
+            value: 9.56
+        },
+        {
+            axis: "Score actuel",
+            value: 9.56
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 11.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.19
+        }, {
+            axis: "Score en première langue",
+            value: 10.1
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 8.03
+        },
+        {
+            axis: "Score collégial",
+            value: 9.74
+        },
+        {
+            axis: "Score actuel",
+            value: 9.74
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 9.5
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.38
+        }, {
+            axis: "Score en première langue",
+            value: 11.2
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.27
+        },
+        {
+            axis: "Score collégial",
+            value: 9.84
+        },
+        {
+            axis: "Score actuel",
+            value: 9.84
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.12
+        }, {
+            axis: "Score en première langue",
+            value: 11.8
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.21
+        },
+        {
+            axis: "Score collégial",
+            value: 9.33
+        },
+        {
+            axis: "Score actuel",
+            value: 9.33
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.62
+        }, {
+            axis: "Score en première langue",
+            value: 11.4
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.56
+        },
+        {
+            axis: "Score collégial",
+            value: 8.7
+        },
+        {
+            axis: "Score actuel",
+            value: 8.7
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 6.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.5
+        }, {
+            axis: "Score en première langue",
+            value: 9.3
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.63
+        },
+        {
+            axis: "Score collégial",
+            value: 8.69
+        },
+        {
+            axis: "Score actuel",
+            value: 8.69
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 9.75
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.0
+        }, {
+            axis: "Score en première langue",
+            value: 5.0
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.91
+        },
+        {
+            axis: "Score collégial",
+            value: 9.72
+        },
+        {
+            axis: "Score actuel",
+            value: 9.72
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 10.83
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.53
+        }, {
+            axis: "Score en première langue",
+            value: 10.2
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.43
+        },
+        {
+            axis: "Score collégial",
+            value: 9.51
+        },
+        {
+            axis: "Score actuel",
+            value: 9.51
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 11.09
+        }, {
+            axis: "Score en première langue",
+            value: 10.6
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.98
+        },
+        {
+            axis: "Score collégial",
+            value: 8.8
+        },
+        {
+            axis: "Score actuel",
+            value: 8.8
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.5
+        }, {
+            axis: "Score en première langue",
+            value: 8.3
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 7.32
+        },
+        {
+            axis: "Score collégial",
+            value: 9.96
+        },
+        {
+            axis: "Score actuel",
+            value: 9.96
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.44
+        }, {
+            axis: "Score en première langue",
+            value: 11.4
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.72
+        },
+        {
+            axis: "Score collégial",
+            value: 8.07
+        },
+        {
+            axis: "Score actuel",
+            value: 8.07
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.17
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.53
+        }, {
+            axis: "Score en première langue",
+            value: 7.9
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.91
+        },
+        {
+            axis: "Score collégial",
+            value: 8.56
+        },
+        {
+            axis: "Score actuel",
+            value: 8.56
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.83
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.75
+        }, {
+            axis: "Score en première langue",
+            value: 10.6
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.47
+        },
+        {
+            axis: "Score collégial",
+            value: 9.05
+        },
+        {
+            axis: "Score actuel",
+            value: 9.05
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.17
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.81
+        }, {
+            axis: "Score en première langue",
+            value: 11.3
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.42
+        },
+        {
+            axis: "Score collégial",
+            value: 8.85
+        },
+        {
+            axis: "Score actuel",
+            value: 5.85
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 6.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.88
+        }, {
+            axis: "Score en première langue",
+            value: 9.7
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 9.41
+        },
+        {
+            axis: "Score collégial",
+            value: 9.41
+        },
+        {
+            axis: "Score actuel",
+            value: 8.0
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 10.0
+        }, {
+            axis: "Score en langue arabe",
+            value: 9.5
+        }, {
+            axis: "Score en première langue",
+            value: 7.25
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 6.5
+        },
+        {
+            axis: "Score collégial",
+            value: 9.87
+        },
+        {
+            axis: "Score actuel",
+            value: 9.87
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 10.12
+        }, {
+            axis: "Score en première langue",
+            value: 10.2
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.88
+        },
+        {
+            axis: "Score collégial",
+            value: 9.98
+        },
+        {
+            axis: "Score actuel",
+            value: 8.98
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 7.67
+        }, {
+            axis: "Score en langue arabe",
+            value: 7.69
+        }, {
+            axis: "Score en première langue",
+            value: 8.8
+        }
+    ],[
+        {
+            axis: "Score primaire",
+            value: 5.77
+        },
+        {
+            axis: "Score collégial",
+            value: 8.8
+        },
+        {
+            axis: "Score actuel",
+            value: 8.8
+        },
+        {
+            axis: "Score en mathématiques",
+            value: 8.33
+        }, {
+            axis: "Score en langue arabe",
+            value: 8.25
+        }, {
+            axis: "Score en première langue",
+            value: 8.0
+        }
+    ]
 ];
 
 
-var margin = { top: 10, right: 30, bottom: 30, left: 40 };
-var width = document.getElementById("ageDistribution").offsetWidth;
-var height = width; 
-// append the svg object to the body of the page
-var svg = d3.select("#ageDistribution")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+// Chart dimensions
+var width = 500;
+var height = 500;
 
-// Get the width and height of the container element for the donut chart
-var donutContainerWidth = document.getElementById("schoolTypeAreaDistribution").offsetWidth;
-var donutContainerHeight = donutContainerWidth; // Make the chart square
+// Radius of the spider chart
+var radius = Math.min(width, height) / 2;
 
-// Set the radius based on the container size for the donut chart
-var donutRadius = Math.min(donutContainerWidth, donutContainerHeight) / 2;
+// Function to create spider chart
+function createSpiderChart(data) {
+    var svg = d3.select(".radarChart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-// Create a color scale for the donut chart
-var donutColor = d3.scaleOrdinal()
-    .domain(["Public Rural", "Public Urban", "Private Rural", "Private Urban"])
-    .range(["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"]);
+    // Extract axis names from the first student's data
+    var axisNames = [ "Score primaire",
+    "Score collégial",
+    "Score actuel",
+    "Score en mathématiques",
+    "Score en langue arabe",
+    "Score en première langue",];
+    console.log(axisNames)
+    // Scale for the radius
+    var scale = d3.scaleLinear()
+        .domain([0, 20])  // Assuming the maximum score is 20, adjust as needed
+        .range([0, radius]);
 
-// Create an arc generator for the donut chart
-var donutArc = d3.arc()
-    .outerRadius(donutRadius - 10)
-    .innerRadius(donutRadius - 70);
+    // Draw the axes
+    var axis = svg.selectAll(".axis")
+        .data(axisNames)
+        .enter().append("g")
+        .attr("class", "axis");
 
-// Create a pie generator for the donut chart
-var donutPie = d3.pie()
-    .sort(null)
-    .value(function(d) { return d.count; });
+    axis.append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", function(d, i) { return scale(20) * Math.cos(Math.PI * 2 * i / axisNames.length); })
+        .attr("y2", function(d, i) { return scale(20) * Math.sin(Math.PI * 2 * i / axisNames.length); })
+        .attr("class", "line");
 
-// Append an SVG element to the donut chart container
-var donutSvg = d3.select("#schoolTypeAreaDistribution")
-    .append("svg")
-    .attr("width", donutContainerWidth)
-    .attr("height", donutContainerHeight)
-    .append("g")
-    .attr("transform", "translate(" + donutContainerWidth / 2 + "," + donutContainerHeight / 2 + ")");
+    // Draw the labels
+    axis.append("text")
+        .attr("class", "legend")
+        .style("font-size", "14px")
+        .attr("dy", "0.35em")
+        .attr("x", function(d, i) { return scale(20 * 1.1) * Math.cos(Math.PI * 2 * i / axisNames.length); })
+        .attr("y", function(d, i) { return scale(20 * 1.1) * Math.sin(Math.PI * 2 * i / axisNames.length); })
+        .text(function(d) { return d; });
 
-// Create a tooltip div element for the donut chart
-var donutTooltip = d3.select("body")
-    .append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+    // Function to create paths for data points
+    var radarLine = d3.lineRadial()
+        .curve(d3.curveLinearClosed)
+        .radius(function(d) { return scale(d.value); })
+        .angle(function(d, i) { return i * 2 * Math.PI / axisNames.length; });
 
-// Load data from CSV for the age distribution chart
-d3.csv("../App/data/data.csv").then(function(data) {
-    // Parse the data and calculate age
-    data.forEach(function(d) {
-        d.Age = new Date(d.Age);
-        d.Age = calculateAge(d.Age);
-    });
+    // Draw the radar chart paths
+    svg.selectAll(".radarArea")
+        .data(data)
+        .enter().append("path")
+        .attr("class", "radarArea")
+        .attr("d", radarLine)
+        .attr("fill", "rgba(255, 0, 0, 0.5)");  // Adjust the fill color and opacity as needed
+}
 
-    // Separate data by gender
-    var maleData = data.filter(function(d) { return d.Sexe === "M"; });
-    var femaleData = data.filter(function(d) { return d.Sexe === "F"; });
-    var myGroups = d3.map(data, function(d){return d.Age;}).keys()
-    // X axis: scale and draw
-    var x = d3.scaleLinear()
-        // .domain([d3.min(data, function(d) { return +(d.Age-0.5) }), d3.max(data, function(d) { return +d.Age })])
-        .domain(myGroups)
-        .range([0, width]);
+// Populate the dropdown menu with student names
+var dropdown = d3.select("#student-dropdown");
 
-        
-    // Y axis: scale and draw
-    var y = d3.scaleLinear()
-        .range([height, 0]);
+dropdown.selectAll("option")
+    .data(studentsData)
+    .enter().append("option")
+    .attr("value", function(d, i) { return i; })
+    .text(function(d, i) { return "Student " + (i + 1); });
 
-    
-    // Define histogram function for male students
-    var maleHistogram = d3.histogram()
-        .value(function(d) { return d.Age; })
-        .domain(x.domain())
-        .thresholds(x.ticks(7));
-
-    // Calculate bins for male students
-    var maleBins = maleHistogram(maleData);
-
-    // Define histogram function for female students
-    var femaleHistogram = d3.histogram()
-        .value(function(d) { return d.Age; })
-        .domain(x.domain())
-        .thresholds(x.ticks(7));
-
-    // Calculate bins for female students
-    var femaleBins = femaleHistogram(femaleData);
-
-    // Determine the maximum frequency for setting the y domain
-    var maxFrequency = Math.max(
-        d3.max(maleBins, function(d) { return d.length; }),
-        d3.max(femaleBins, function(d) { return d.length; })
-    );
-    y.domain([0, maxFrequency]);
-
-    // Draw X axis
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-
-    // Draw Y axis
-    svg.append("g")
-        .call(d3.axisLeft(y));
-
-
-    // Draw bars for male students
-    var maleBars = svg.selectAll("rect.male")
-        .data(maleBins)
-        .enter().append("rect")
-        .attr("class", "male")
-        .attr("x", 1)
-        .attr("transform", function(d) {
-            var barWidth = x(d.x1) - x(d.x0) - 1;
-            return "translate(" + (x(d.x0) + barWidth >= 0 ? x(d.x0) : x(d.x0) + 1) + "," + y(d.length) + ")";
-        })
-        .attr("width", function(d) {
-            var barWidth = x(d.x1) - x(d.x0) - 1;
-            return barWidth >= 0 ? barWidth : 1;
-        })
-        .attr("height", function(d) { return height - y(d.length); })
-        .style("fill", "blue")
-        .on("mouseover", function(d) {
-            // Show tooltip on mouseover
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 0.9);
-            tooltip.html("Male: " + d.length) // Customize the tooltip content as needed
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function(d) {
-            // Hide tooltip on mouseout
-            tooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-         });
-
-    // Draw bars for female students
-    var femaleBars = svg.selectAll("rect.female")
-        .data(femaleBins)
-        .enter().append("rect")
-        .attr("class", "female")
-        .attr("x", 1)
-        .attr("transform", function(d) {
-            var barWidth = x(d.x1) - x(d.x0) - 1;
-            return "translate(" + (x(d.x0) + barWidth >= 0 ? x(d.x0) : x(d.x0) + 1) + "," + y(d.length) + ")";
-        })
-        .attr("width", function(d) {
-            var barWidth = x(d.x1) - x(d.x0) - 1;
-            return barWidth >= 0 ? barWidth : 1;
-        })
-        .attr("height", function(d) { return height - y(d.length); })
-        .style("fill", "pink")
-        .on("mouseover", function(d) {
-            // Show tooltip on mouseover
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 0.9);
-            tooltip.html("Female: " + d.length) // Customize the tooltip content as needed
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function(d) {
-            // Hide tooltip on mouseout
-            tooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-        });
-        // Legend Data
-        var legendData = [
-            { label: "Male", color: "blue" }, // Blue color for Male
-            { label: "Female", color: "pink" } // Orange color for Female
-        ];
-
-        // Create a tooltip div element
-        var tooltip = d3.select("body")
-            .append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-        
-
-        // Create Legend
-        var legend = svg.selectAll(".legend")
-            .data(legendData)
-            .enter().append("g")
-            .attr("class", "legend")
-            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-        legend.append("circle")
-            .attr("cx", width - 10)
-            .attr("cy", 9)
-            .attr("r", 8)
-            .style("fill", function(d) { return d.color; });
-
-        legend.append("text")
-            .attr("x", width - 25)
-            .attr("y", 7)
-            .attr("dy", ".35em")
-            .style("text-anchor", "end")
-            .text(function(d) { return d.label; });
-        // Add click event to legend items for toggling visibility
-        legend.on("click", function(d) {
-            var selectedClass = d.label.toLowerCase();
-            if (selectedClass === "male") {
-                toggleVisibility(maleBars);
-            } else if (selectedClass === "female") {
-                toggleVisibility(femaleBars);
-            }
-    
-
+// Event listener for dropdown change
+dropdown.on("change", function() {
+    var selectedStudentIndex = +dropdown.property("value");
+    var selectedStudentData = studentsData[selectedStudentIndex];
+    // Clear the previous chart if exists
+    d3.select(".radarChart").selectAll("*").remove();
+    // Create the spider chart for the selected student
+    createSpiderChart(selectedStudentData);
 });
-    // Function to toggle visibility of bars
-    function toggleVisibility(bars) {
-        var isVisible = bars.style("opacity") === "1";
-        bars.transition().duration(500)
-            .style("opacity", isVisible ? 0 : 1);
-    }
 
-    // Function to calculate age in years
-    function calculateAge(dob) {
-        var today = new Date();
-        var birthDate = new Date(dob);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var monthDiff = today.getMonth() - birthDate.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
-    }
-
-    // Rest of your code for the donut chart
-    // ...
-});

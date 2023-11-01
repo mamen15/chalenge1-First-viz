@@ -328,19 +328,6 @@ var data = [
         {axis: "Score en langue arabe", value: 11.09},
         {axis: "Score en première langue", value: 10.6}
       ]
-    }
-  ];
-  var data = [
-    {
-      className: 'Student 30', 
-      axes: [
-        {axis: "Score primaire", value: 5.43},
-        {axis: "Score collégial", value: 9.51},
-        {axis: "Score actuel", value: 9.51},
-        {axis: "Score en mathématiques", value: 8.0},
-        {axis: "Score en langue arabe", value: 11.09},
-        {axis: "Score en première langue", value: 10.6}
-      ]
     },
     {
       className: 'Student 31', 
@@ -453,46 +440,3 @@ var data = [
       ]
     }
 ];
-
-RadarChart.defaultConfig.color = function() {};
-RadarChart.defaultConfig.radius = 3;
-RadarChart.defaultConfig.w = 400;
-RadarChart.defaultConfig.h = 400;
-
-function randomDataset() {
-    return data.map(function(d) {
-      return {
-        className: d.className,
-        axes: d.axes.map(function(axis) {
-          return {axis: axis.axis, value: Math.ceil(Math.random() * 10)};
-        })
-      };
-    });
-  }
-  var chart = RadarChart.chart();
-var cfg = chart.config(); // retrieve default config
-var svg = d3.select('body').append('svg')
-  .attr('width', cfg.w + cfg.w + 50)
-  .attr('height', cfg.h + cfg.h / 4);
-svg.append('g').classed('single', 1).datum(randomDataset()).call(chart);
-
-// many radars
-chart.config({w: cfg.w / 4, h: cfg.h / 4, axisText: false, levels: 0, circles: false});
-cfg = chart.config();
-function render() {
-  var game = svg.selectAll('g.game').data(
-    [
-      randomDataset(),
-      randomDataset(),
-      randomDataset(),
-      randomDataset()
-    ]
-  );
-  game.enter().append('g').classed('game', 1);
-  game
-    .attr('transform', function(d, i) { return 'translate('+((cfg.w * 4) + 50 + (i * cfg.w))+','+ (cfg.h * 1.3) +')'; })
-    .call(chart);
-
-  setTimeout(render, 1000);
-}
-render();

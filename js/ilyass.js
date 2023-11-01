@@ -1,5 +1,5 @@
 // Load the CSV data
-d3.csv("../App/data/data_csv.csv").then(function(data) {
+d3.csv("data_csv.csv").then(function(data) {
     // Log the loaded data to verify it's correctly loaded
     console.log(data);
 
@@ -20,6 +20,8 @@ function processData(data) {
         // Call your data visualization function here, passing the data array
         createBarChart(data);
         createScatterPlot(data);
+        createPieChart(data);
+
     } else {
         console.error("The loaded data is not an array.");
     }
@@ -84,6 +86,7 @@ function createBarChart(data) {
 }
 
 // Ensure you have an HTML element with the ID "chart" where the SVG will be rendered.
+// Function to create the scatter plot
 // Function to create the scatter plot
 function createScatterPlot(data) {
     var margin = { top: 20, right: 20, bottom: 50, left: 50 };
@@ -160,4 +163,55 @@ function createScatterPlot(data) {
 
     tooltip.append("div").attr("id", "primary");
     tooltip.append("div").attr("id", "collegial");
+}
+// Function to create the pie chart
+function createPieChart(data) {
+    var width = 400;
+    var height = 400;
+    var radius = Math.min(width, height) / 2;
+
+    var svg = d3.select("#pie-chart") // Select the SVG element by ID
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    // Your pie chart code goes here
+    // You will need to define the pie layout, arcs, and colors
+
+    // Example code for a simple pie chart:
+    var pie = d3.pie()
+        .value(function(d) { return d.value; });
+
+    var path = d3.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var dataToPlot = [
+        { label: "Category A", value: 30 },
+        { label: "Category B", value: 50 },
+        { label: "Category C", value: 20 }
+    ];
+
+    var arcs = svg.selectAll(".arc")
+        .data(pie(dataToPlot))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
+
+    arcs.append("path")
+        .attr("d", path)
+        .attr("fill", function(d, i) {
+            return color(i);
+        });
+
+    // You can add labels or tooltips as needed
+    // ...
+
+    // Add a legend if necessary
+    // ...
+
+    // More pie chart customization can be added here
 }

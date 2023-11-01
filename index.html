@@ -6,6 +6,8 @@
     <title>Student Performance Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <div class="container mt-5">
@@ -22,12 +24,18 @@
                     <h2 class="chart-title text-center mb-4">School Type and Area Distribution</h2>
                     <div id="schoolTypeAreaDistribution"></div>
                 </div>
-                <div class="col-md-6">
+                <div class="heatmap-container">
+                    <h2 class="heatmap-title">Correlation Heatmap</h2>
+                    <div id="heatmap"></div>
+                </div>
+                <script src="js/HeathMap.js"></script>
+            
+                <!-- <div class="col-md-6">
                     <div class="chart-container">
                         <h2 class="chart-title text-center mb-4">Student 1 Performance</h2>
-                        <div id="radarChart1"></div>
+                        <div id="radarChart"></div>
                         <div class="form-group mt-3">
-                            <label for="studentSelector1">Select Student 1:</label>
+                            <label for="studentSelector">Select Student 1:</label>
                             <select class="form-control" id="studentSelector1"></select>
                         </div>
                     </div>
@@ -41,16 +49,17 @@
                             <select class="form-control" id="studentSelector2"></select>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
-        </div>
+        </div> 
                 <!-- Add more charts or content here -->
     </div>
     
     <div class="tooltipAgeHist"></div>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <script src="js/HistogramChart.js"></script>
     <script src="js/DonutChart.js"></script>
-    <script src="js/RadarChart.js"></script>
+    <!-- <script src="js/save_csv.js"></script> -->
+    <!-- <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script> -->
 </body>
 </html>
