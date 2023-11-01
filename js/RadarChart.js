@@ -18,6 +18,7 @@ var Radarsvg = d3.select("#spider-chart")
   .append("g")
   .attr("transform", "translate(" + (width / 2 + margin.left) + "," + (height / 2 + margin.top) + ")");
 
+
 // Define the domains for the axes
 var axes = data[0].axes.map(function(d) { return d.axis; });
 scale.domain([0, d3.max(data, function(d) {
@@ -25,7 +26,9 @@ scale.domain([0, d3.max(data, function(d) {
     return axis.value;
   });
 })]);
+
 var select = d3.select("#student-select");
+
 // Create a function to draw the spider chart
 var line = d3.lineRadial()
   .radius(function(d) { return scale(d.value); })
@@ -54,7 +57,6 @@ axis.append("text")
   .attr("y", function(d, i) { return scale.range()[1] * 1.1 * Math.sin((i * 2 * Math.PI) / axes.length); })
   .text(function(d) { return d; });
 
-
 select.selectAll("option")
   .data(data)
   .enter().append("option")
@@ -74,59 +76,90 @@ select.on("change", function() {
   Radarsvg.selectAll(".student").remove();
 
   // Draw the chart for the selected student
-  var student = Radarsvg.append("g").attr("class", "student").attr("fill", colorScale(selectedStudentName));;
+  var student = Radarsvg.append("g").attr("class", "student").attr("fill", colorScale(selectedStudentName));
 
   var tooltip = d3.select("body").append("div")
-  .attr("class", "tooltip")
-  .style("opacity", 0);
-
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
   student.append("path")
     .attr("class", "line")
     .attr("d", line(selectedStudentData.axes))
     .on("mouseover", function(d) {
-        var tooltipText = "Axis Value: " + d.value; // Customize this as needed
-        tooltip.transition()
-          .duration(200)
-          .style("opacity", .9);
-        tooltip.html(tooltipText)
-          .style("left", (d3.event.pageX) + "px")
-          .style("top", (d3.event.pageY - 28) + "px");
-      })
-    .on("mouseout", function(d) {
-        tooltip.transition()
-          .duration(500)
-          .style("opacity", 0);
-      });;
-    
-    student.select(".line")
-      .transition()
-      .duration(1000) // Duration of the transition in milliseconds
-      .attr("d", line(selectedStudentData.axes));
-    
-    // Inside the event listener for the dropdown change, add the following animation:
-    student.style("opacity", 0)
-            .transition()
-            .duration(1000) // Duration of the animation in milliseconds
-            .style("opacity", 1);
-    
-    // Styling the axis lines
-    axis.select(".line")
-    .style("stroke", "#ccc") // Color of the axis lines
-    .style("stroke-width", "2px"); // Width of the axis lines
-      
-    // Styling the axis text
-    axis.select(".legend")
-    .style("fill", "#333"); // Color of the axis text
-        
-    student.append("text")
-    .attr("class", "legend")
-    .style("font-size", "16px")
-    .attr("dy", "0.35em")
+      var tooltipText = "Axis Value: " + d.value; // Customize this as needed
+      tooltip.transition()
+        .duration(200)
+        .style("opacity", .9);
+      tooltip.html(tooltipText)
+        .style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function() {
+      tooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
+
+  // Update the position of the text.legend
+  student.select(".legend")
     .attr("x", 0)
     .attr("y", -radius - 20)  // Adjust the position of the student name
     .text(selectedStudentData.className)
     .style("fill", colorScale(selectedStudentName));
 
-});
+  // Update the path.line to connect to the center of the text.legend
+  student.select(".line")
+    .transition()
+    .duration(1000) // Duration of the transition in milliseconds
+    .attr("d", function() {
+      return line(selectedStudentData.axes) + "Z"; // Z indicates closing the path
+    });
 
+  // Styling the axis lines
+  axis.selectAll(".line")
+    .style("stroke", "#ccc") // Color of the axis lines
+    .style("stroke-width", "2px"); // Width of the axis lines
+
+  // Styling the axis text
+  axis.selectAll(".legend")
+    .style("fill", "#333"); // Color of the axis text
+
+  // Fade in the student chart
+  student.style("opacity", 0)
+    .transition()
+    .duration(1000) // Duration of the animation in milliseconds
+    .style("opacity", 1);
+
+  // Draw spider net (grid lines)
+var numGridLevels = 5; // Number of concentric circles
+var numRadialLines = axes.length; // Number of radial lines
+
+// Draw concentric circles as grid lines
+for (var i = 0; i < numGridLevels; i++) {
+  var gridRadius = radius * ((i + 1) / numGridLevels);
+  Radarsvg.append("circle")
+    .attr("class", "grid-circle")
+    .attr("r", gridRadius)
+    .style("stroke", "#ccc")
+    .style("stroke-width", "1px")
+    .style("fill", "none");
+}
+
+// Draw radial lines as grid lines
+axis.append("line")
+  .attr("class", "grid-line")
+  .attr("x1", 0)
+  .attr("y1", 0)
+  .attr("x2", function(d, i) {
+    return scale.range()[1] * Math.cos((i * 2 * Math.PI) / numRadialLines);
+  })
+  .attr("y2", function(d, i) {
+    return scale.range()[1] * Math.sin((i * 2 * Math.PI) / numRadialLines);
+  })
+  .style("stroke", "#ccc")
+  .style("stroke-width", "1px")
+  .style("fill", "none");
+
+
+    
+});
