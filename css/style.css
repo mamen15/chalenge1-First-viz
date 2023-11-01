@@ -6,6 +6,14 @@
     border-radius: 4px;
     font-size: 14px;
 }
+.tooltipAgeHist {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
 
 /* Style the bars */
 .bar {
@@ -51,13 +59,8 @@
 }
 /* Add your custom styles here */
 body {
-    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    color: #343a40;
 }
 
 .container {
@@ -78,34 +81,38 @@ body {
     color: #000000;
 }
 
-.tooltipAgeHist {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
+/* .student .line {
+    fill: none;
+    stroke-width: 3px;
+    stroke-opacity: 0.9;
 }
-.radar-chart .area {
-    fill-opacity: 0.7;
-  }
-  .radar-chart.focus .area {
-    fill-opacity: 0.3;
-  }
-  .radar-chart.focus .area.focused {
-    fill-opacity: 0.9;
-  }
 
-
-.heatmap-container {
+.student .line:hover {
+    stroke-width: 5px;
+} */
+.spider-container {
     text-align: center;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-.heatmap-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+.axis .line {
+    fill: none;
+    stroke: #333;
+    stroke-width: 2px;
+    opacity: 0.8;
 }
+
+
+path:hover {
+    stroke: #FF5733;
+}
+
+/* .tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    pointer-events: none;
+    display: none;
+} */

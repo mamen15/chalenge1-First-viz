@@ -7,12 +7,11 @@ var height = 500 - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
 var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
-
 // Create a D3.js scale for the axes
 var scale = d3.scaleLinear().range([0, radius]);
 
 // Create the SVG container
-var svg = d3.select("body")
+var Radarsvg = d3.select("#spider-chart")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -34,7 +33,7 @@ var line = d3.lineRadial()
   .curve(d3.curveLinearClosed);
 
 // Draw the axes
-var axis = svg.selectAll(".axis")
+var axis = Radarsvg.selectAll(".axis")
   .data(axes)
   .enter()
   .append("g")
@@ -71,20 +70,11 @@ select.on("change", function() {
     return d.className === selectedStudentName;
   });
 
-  // Create data points for circles
-var circleData = selectedStudentData.axes.map(function(d) {
-    return {
-      axis: d.axis,
-      value: d.value
-    };
-  });
-
-
   // Clear previous chart content
-  svg.selectAll(".student").remove();
+  Radarsvg.selectAll(".student").remove();
 
   // Draw the chart for the selected student
-  var student = svg.append("g").attr("class", "student").attr("fill", colorScale(selectedStudentName));;
+  var student = Radarsvg.append("g").attr("class", "student").attr("fill", colorScale(selectedStudentName));;
 
   var tooltip = d3.select("body").append("div")
   .attr("class", "tooltip")
@@ -122,13 +112,12 @@ var circleData = selectedStudentData.axes.map(function(d) {
     
     // Styling the axis lines
     axis.select(".line")
-        .style("stroke", "#ccc") // Color of the axis lines
-        .style("stroke-width", "2px"); // Width of the axis lines
-
-        // Styling the axis text
-        axis.select(".legend")
-        .style("fill", "#333"); // Color of the axis text
-    
+    .style("stroke", "#ccc") // Color of the axis lines
+    .style("stroke-width", "2px"); // Width of the axis lines
+      
+    // Styling the axis text
+    axis.select(".legend")
+    .style("fill", "#333"); // Color of the axis text
         
     student.append("text")
     .attr("class", "legend")

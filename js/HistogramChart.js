@@ -10,7 +10,7 @@ var height = 400 - margin.top - margin.bottom;
 
 var svg = d3.select("#ageDistribution").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("../data/data.csv").then(function (data) {
+d3.csv("../App/data/data.csv").then(function (data) {
     try { // Parse the data and calculate age
         data.forEach(function (d) {
             d.Age = new Date(d.Age);
@@ -104,6 +104,20 @@ d3.csv("../data/data.csv").then(function (data) {
         legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function (d) {
             return d;
         });
+        // Create X axis label
+        svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + 360 + ")")
+        .style("text-anchor", "middle")
+        .text("Age");
+
+        // Create Y axis label
+        svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Number of Students");
     } catch (error) {
         console.error("Error:", error);
     }
