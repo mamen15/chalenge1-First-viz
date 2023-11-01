@@ -1,5 +1,5 @@
 // Parse the CSV data
-d3.csv("../App/data/data.csv").then(function(data) {
+d3.csv("../data/data.csv").then(function(data) {
     console.log(data)
     // Extract unique student codes for dropdown menu options
     var studentCodes = [...new Set(data.map(d => d.code))];
