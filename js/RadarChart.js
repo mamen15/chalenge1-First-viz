@@ -1,21 +1,26 @@
-        // Load CSV data
-        d3.csv("../App/data/data.csv").then(function (data) {
-            // Extract unique student codes for dropdown menu options
-            var studentCodes = [...new Set(data.map(d => d.code))];
+// Parse the CSV data
+d3.csv("../App/data/data.csv").then(function(data) {
+    console.log(data)
+    // Extract unique student codes for dropdown menu options
+    var studentCodes = [...new Set(data.map(d => d.code))];
+    
+    // Populate the dropdown menus with student codes
+    var dropdown1 = d3.select("#studentSelector1");
+    var dropdown2 = d3.select("#studentSelector2");
 
-            // Populate the dropdown menu with student codes
-            var dropdown = d3.select("#studentSelector");
-            studentCodes.forEach(function (code) {
-                dropdown.append("option").attr("value", code).text(code);
-            });
-
-            // Function to update radar chart based on selected student code
-            function updateRadarChart(selectedCode) {
-                // Filter data for the selected student code
-                var selectedStudentData = data.find(d => d.code === selectedCode);
-
-                // Prepare radar chart data for the selected student
-                var radarData = prepareRadarData(selectedStudentData);
+    studentCodes.forEach(function(code) {
+        dropdown1.append("option").attr("value", code).text(code);
+        dropdown2.append("option").attr("value", code).text(code);
+    });
+    
+    // Function to update radar chart based on selected student codes
+    function updateRadarChart(selectedCode1, selectedCode2) {
+        // Filter data for the selected student codes
+        var selectedStudentData1 = data.filter(d => d.code === selectedCode1)[0];
+        var selectedStudentData2 = data.filter(d => d.code === selectedCode2)[0];
+        
+        var radarData1 = prepareRadarData(selectedStudentData1);
+        var radarData2 = prepareRadarData(selectedStudentData2);
 
                 // Radar chart configuration
                 var config = {
