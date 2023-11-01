@@ -9,21 +9,59 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/StudentData.js"></script>
+        <!-- Meta tags and stylesheets go here -->
+        <style>
+            /* CSS for Beautiful Font */
+            .chart-explanation {
+                font-family: 'Arial', sans-serif;
+                font-size: 16px;
+                line-height: 1.6;
+                color: #333; /* Set your desired font color */
+            }
+                    /* Custom CSS */
+            .introduction {
+                background-color: #f8f9fa;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .introduction h2 .first {
+                color: #007bff;
+            }
+            h3{
+                padding: 40px;
+                border-radius: 10px;   
+            }
+        </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Student Performance Dashboard</h1>
+        <!-- Introduction Section -->
+        <div class="introduction">
+            <p><h2 class="first">Hello! My name is <a href="https://github.com/mamen15" target="_blank">BANANI MOHAMED AMINE.</a></h2><br>
+                I am currently pursuing my Master's degree in Big Data and Artificial Intelligence at the Taroudant faculty. Below, you'll find a dashboard that presents an analysis of student performance based on various factors following "Challenge 1: First Visualization," an assignment given by Professor El Hajji on Google Classroom.
+            This dashboard presents an analysis of student performance based on various factors. </p>
+        </div>
+        <div>
+            <h3 class="text-center mb-4">Student Performance Dashboard</h3>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="chart-container">
                     <h2 class="chart-title text-center mb-4">Age Distribution Chart</h2>
                     <div id="ageDistribution"></div>
+                    <!-- Explanation for Age Distribution Chart -->
+                    <p class="chart-explanation">This chart represents the distribution of ages among the students in your dataset. The data includes students' ages, ranging from 13 to 19 years old.</p>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="chart-container">
                     <h2 class="chart-title text-center mb-4">School Type and Area Distribution</h2>
                     <div id="schoolTypeAreaDistribution"></div>
+                    <!-- Explanation for School Type and Area Distribution Chart -->
+                    <p class="chart-explanation">This chart visualizes the distribution of students based on their school type (public or private) and area (rural or urban). All the students in your dataset attend public schools in rural areas.</p>
                 </div>
             <div class="col-md-6">
                 <div class="spider-container">
@@ -33,7 +71,15 @@
                         <label for="student-select">Select Student:</label>
                         <select id="student-select" class="form-control"></select>
                     </div>
-                    <div id="spider-chart"></div>                    
+                    <div id="spider-chart"></div>   
+                    <!-- Explanation for Student Performance Radar Chart -->
+                    <p class="chart-explanation">This radar chart provides an overview of individual student performance in various subjects. The chart includes scores in primary, secondary, and current education levels, as well as scores in mathematics, Arabic language, and the first language. Each axis represents a different subject area, and the data points indicate the corresponding scores for each student. Please select a specific student from the dropdown menu ("Select Student") to display their performance data. <br>
+                        "Score primaire": "S Prm",
+                        "Score collégial": "S Col",
+                        "Score actuel": "S Act",
+                        "Score en mathématiques": "M S",
+                        "Score en langue arabe": "A S",
+                        "Score en première langue": "F L S" </p>                
                 </div>
                     <script src="js/RadarChart.js"></script>
                 </div>
