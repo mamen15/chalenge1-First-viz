@@ -55,6 +55,7 @@
                     <p class="chart-explanation">This chart represents the distribution of ages among the students in your dataset. The data includes students' ages, ranging from 13 to 19 years old.</p>
 
                 </div>
+            
             </div>
             <div class="col-md-6">
                 <div class="chart-container">
@@ -62,27 +63,29 @@
                     <div id="schoolTypeAreaDistribution"></div>
                     <!-- Explanation for School Type and Area Distribution Chart -->
                     <p class="chart-explanation">This chart visualizes the distribution of students based on their school type (public or private) and area (rural or urban). All the students in your dataset attend public schools in rural areas.</p>
-                </div>
-            <div class="col-md-6">
-                <div class="spider-container">
-                    <h2 class="chart-title text-center mb-4">Student Performance</h2>
-                    <div id="radarChart2"></div>
-                    <div class="form-group">
-                        <label for="student-select">Select Student:</label>
-                        <select id="student-select" class="form-control"></select>
-                    </div>
-                    <div id="spider-chart"></div>   
-                    <!-- Explanation for Student Performance Radar Chart -->
-                    <p class="chart-explanation">This radar chart provides an overview of individual student performance in various subjects. The chart includes scores in primary, secondary, and current education levels, as well as scores in mathematics, Arabic language, and the first language. Each axis represents a different subject area, and the data points indicate the corresponding scores for each student. Please select a specific student from the dropdown menu ("Select Student") to display their performance data. <br>
-                        "Score primaire": "S Prm",
-                        "Score collégial": "S Col",
-                        "Score actuel": "S Act",
-                        "Score en mathématiques": "M S",
-                        "Score en langue arabe": "A S",
-                        "Score en première langue": "F L S" </p>                
-                </div>
+                </div>                      
+              
+            </div>
+
+            </div>
+                    <div class="col-md-6">
+                        <div class="spider-container">
+                            <h2 class="chart-title text-center mb-4">Student Performance</h2>
+                                <label for="student-select">Select Student:</label>
+                                <select id="student-select" class="form-control"></select>
+                                <div id="spider-chart"></div>                     <!-- Explanation for Student Performance Radar Chart -->
+          
+                            </div>
+                    <!-- Explanation for School Type and Area Distribution Chart -->
+                                <p class="chart-explanation">This radar chart provides an overview of individual student performance in various subjects. The chart includes scores in primary, secondary, and current education levels, as well as scores in mathematics, Arabic language, and the first language. Each axis represents a different subject area, and the data points indicate the corresponding scores for each student. Please select a specific student from the dropdown menu ("Select Student") to display their performance data. <br>
+                "Score primaire": "S Prm",
+                "Score collégial": "S Col",
+                "Score actuel": "S Act",
+                "Score en mathématiques": "M S",
+                "Score en langue arabe": "A S",
+                "Score en première langue": "F L S" </p>
+            </div>
                     <script src="js/RadarChart.js"></script>
-                </div>
             </div>
         </div>
     </div>
