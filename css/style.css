@@ -93,6 +93,7 @@ body {
 .spider-container {
     text-align: center;
     margin-top: 20px;
+    align-content: center   ;
 }
 
 .axis .line {
