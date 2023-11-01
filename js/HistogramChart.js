@@ -10,7 +10,7 @@ var height = 400 - margin.top - margin.bottom;
 
 var svg = d3.select("#ageDistribution").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("../App/data/data.csv").then(function (data) {
+d3.csv("../data/data.csv").then(function (data) {
     try { // Parse the data and calculate age
         data.forEach(function (d) {
             d.Age = new Date(d.Age);
